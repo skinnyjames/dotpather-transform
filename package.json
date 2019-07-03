@@ -1,0 +1,15 @@
+{
+  "name": "dotpather-transform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "deepmerge": "^3.3.0",
+    "dotpather": "^1.0.0"
+  }
+}
