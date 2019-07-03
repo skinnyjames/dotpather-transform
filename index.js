@@ -1,5 +1,6 @@
 const dotpather = require('dotpather')
 const merge = require('deepmerge')
+const options = require('./util/merge-options')
 
 module.exports = transform
 
@@ -8,23 +9,6 @@ function transform (str) {
   var parts = str.split('.').reverse()
   var len = parts.length
 
-  var mergeOptions = {
-    arrayMerge: function(destinationArray, sourceArray, options) {
-      var newArray = []
-      for (var i = 0; i < sourceArray.length; i++ ) {
-        if (options.isMergeableObject(destinationArray[i])) {
-          newArray.push(merge(destinationArray[i], sourceArray[i], this))
-        } else {
-          if (!!sourceArray[i]) {
-            newArray.push(sourceArray[i])
-          } else {
-            newArray.push(destinationArray[i])
-          }
-        }
-      }
-      return newArray
-    }
-  }
  
   return function(obj, cb) {
     var value = lookup(obj)
@@ -50,6 +34,6 @@ function transform (str) {
       }
     }
 
-    return merge(obj, construct, mergeOptions)
+    return merge(obj, construct, options)
   } 
 }
