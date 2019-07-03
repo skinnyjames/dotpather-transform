@@ -12,5 +12,6 @@ let obj = transform(data, function(number) {
   return number + 1;
 })
 
+console.log(obj)
 console.log(obj.one.two.three)
 
