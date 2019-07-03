@@ -33,5 +33,4 @@ var transformed = transform(data, function(number) {
 ## merge options
 
 this module uses [deep merge](https://github.com/TehShrike/deepmerge) to merge the transformed object with the original one.
-you can pass deep merge options as an optional third parameter to the transform function 
 
