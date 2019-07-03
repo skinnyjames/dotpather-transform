@@ -21,7 +21,7 @@ function transform (str) {
 
     value = cb(value)
 
-    for (let i = 0; i < len; i++) {
+    for (var i = 0; i < len; i++) {
       testKey = parts[i]
       var temp = parseInt(testKey) ? [] : {}
 
