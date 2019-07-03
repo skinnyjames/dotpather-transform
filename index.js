@@ -10,10 +10,11 @@ function transform (str) {
   var len = parts.length
 
  
-  return function(obj, cb) {
+  return function(obj, cb, mergeOptions) {
     var value = lookup(obj)
     var testKey
     var construct = {}
+    var opts = mergeOptions || options
 
     if (!value) { 
       return obj
@@ -34,6 +35,6 @@ function transform (str) {
       }
     }
 
-    return merge(obj, construct, options)
+    return merge(obj, construct, opts)
   } 
 }

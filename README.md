@@ -53,4 +53,4 @@ let obj = transform(data, function(number) {
 ```
 
 this module uses [deep merge](https://github.com/TehShrike/deepmerge) to merge the transformed object with the original one.
-
+you can pass custom merge options as the third parameter to the transform function
