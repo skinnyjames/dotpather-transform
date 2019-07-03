@@ -1,5 +1,7 @@
 # dotpather-transform
 
+[![Build Status](https://travis-ci.org/skinnyjames/dotpather-transform.svg?branch=master)](https://travis-ci.org/skinnyjames/dotpather-transform)
+
 tranform nested objects with dotpaths
 
 based on the [dotpather](https://github.com/jarofghosts/dotpather) module
