@@ -1,10 +1,10 @@
 {
   "name": "dotpather-transform",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "transform objects with dotpaths",
   "main": "index.js",
   "scripts": {
-    "lint": "standard --fix index.js test/index.js",
+    "lint": "standard index.js test/index.js",
     "test": "node test/index.js && npm run lint"
   },
   "repository": {
