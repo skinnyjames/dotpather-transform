@@ -1,15 +1,29 @@
 {
   "name": "dotpather-transform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "transform objects with dotpaths",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard --fix index.js test/index.js",
+    "test": "node test/index.js && npm run lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skinnyjames/dotpather-transform.git"
+  },
+  "keywords": [
+    "dotpath",
+    "utility",
+    "transform"
+  ],
   "author": "skinnyjames",
   "license": "ISC",
   "dependencies": {
     "deepmerge": "^3.3.0",
     "dotpather": "^1.0.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1",
+    "tape": "^4.11.0"
   }
 }
