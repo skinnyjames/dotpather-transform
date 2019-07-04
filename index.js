@@ -14,6 +14,7 @@ function transform (str) {
     var testKey
     var isKey
     var construct
+    var keyArr
     var opts = mergeOptions || options
 
     if (!value) {
@@ -23,7 +24,9 @@ function transform (str) {
     value = cb(value)
 
     for (var i = 0; i < len; i++) {
-      [testKey, isKey] = parts[i].split(':')
+      keyArr = parts[i].split(':')
+      testKey = keyArr[0]
+      isKey = keyArr[1]
 
       var temp = (parseInt(testKey) && !isKey) ? [] : {}
 
