@@ -60,3 +60,15 @@ test('works with filter', function (t) {
 
   t.deepEqual(value.one.two, [ { name: 'good', value: 'test' } ])
 })
+
+test('use numeric object keys', function (t) {
+  t.plan(1)
+
+  var transform = dotpather('one.1:key')
+  var data = { one: { '1': 2 } }
+  var value = transform(data, function (number) {
+    return number + 1
+  })
+
+  t.equal(value.one['1'], 3)
+})

@@ -54,5 +54,23 @@ let obj = transform(data, function(number) {
 
 ```
 
+## numeric object keys
+
+There is no way for this module to tell whether numbers in your dotpath refer to an array index or an object key
+If you are pathing numeric object keys, be sure to append :key to your numerical path
+
+```javascript
+
+var transform = dotpather('one.2:key')
+var data = { one: { '2': 3 } }
+
+var transformed = transform(data, function(number) {
+  return number + 1
+})
+
+// { one: { '2': 4 } }
+
+```
+
 this module uses [deep merge](https://github.com/TehShrike/deepmerge) to merge the transformed object with the original one.
 you can pass custom merge options as the third parameter to the transform function
