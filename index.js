@@ -5,7 +5,7 @@ const options = require('./util/merge-options')
 module.exports = transform
 
 function transform (str) {
-  var lookup = dotpather(str.replace(/:key/, ''))
+  var lookup = dotpather(str.replace(/:key/g, ''))
   var parts = str.split('.').reverse()
   var len = parts.length
 
