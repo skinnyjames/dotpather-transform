@@ -112,3 +112,17 @@ test('array middles', function (t) {
 
   t.deepEqual(value.one, [ 1, 3, 3 ])
 })
+
+test('works with reduce', function (t) {
+  t.plan(1)
+
+  var transform = dotpather('one')
+  var data = { one: [ 1, 2, 3 ] }
+  var value = transform(data, function (arr) {
+    return arr.reduce(function (acc, i) {
+      return (acc += i)
+    })
+  })
+
+  t.equal(value.one, 6)
+})

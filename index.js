@@ -10,16 +10,15 @@ function transform (str, dotpathOptions) {
   var len = parts.length
 
   return function (obj, cb, mergeOptions) {
-    var value = lookup(obj)
+    var originalValue = lookup(obj)
+    var value
     var testKey
     var isKey
     var construct
-    var sourceArrayLength = 0
-    var destArrayLength = 0
     var keyArr
     var opts = mergeOptions || options
 
-    if (!value) {
+    if (!originalValue) {
       if (!dotpathOptions.strict) {
         return obj
       } else {
@@ -27,15 +26,13 @@ function transform (str, dotpathOptions) {
       }
     }
 
-    if (value instanceof Array) {
-      destArrayLength = value.length
-      value = cb(value)
-      sourceArrayLength = value.length
-      if (sourceArrayLength !== destArrayLength) {
+    if (originalValue instanceof Array) {
+      value = cb(originalValue)
+      if ((value instanceof Array) && value.length !== originalValue.length) {
         value.unshift('DOTPATHER_TRANSFORM_USE_SOURCE_ARRAY')
       }
     } else {
-      value = cb(value)
+      value = cb(originalValue)
     }
 
     for (var i = 0; i < len; i++) {
