@@ -1,10 +1,10 @@
 {
   "name": "dotpather-transform",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "transform objects with dotpaths",
   "main": "index.js",
   "scripts": {
-    "lint": "standard index.js test/index.js",
+    "lint": "standard --fix index.js test/index.js",
     "test": "node test/index.js && npm run lint"
   },
   "repository": {
@@ -18,10 +18,6 @@
   ],
   "author": "skinnyjames",
   "license": "ISC",
-  "dependencies": {
-    "deepmerge": "^3.3.0",
-    "dotpather": "^1.0.0"
-  },
   "devDependencies": {
     "standard": "^12.0.1",
     "tape": "^4.11.0"
