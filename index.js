@@ -4,7 +4,7 @@ const options = require('./util/merge-options')
 
 module.exports = transform
 
-function transform (str) {
+function transform (str, dotpathOptions) {
   var lookup = dotpather(str.replace(/:key/g, ''))
   var parts = str.split('.').reverse()
   var len = parts.length
@@ -20,18 +20,23 @@ function transform (str) {
     var opts = mergeOptions || options
 
     if (!value) {
-      return obj
+      if (!dotpathOptions.strict) {
+        return obj
+      } else {
+        throw new Error('Cannot find prop at dotpath ' + str)
+      }
     }
 
     if (value instanceof Array) {
       destArrayLength = value.length
       value = cb(value)
       sourceArrayLength = value.length
+      if (sourceArrayLength !== destArrayLength) {
+        value.unshift('DOTPATHER_TRANSFORM_USE_SOURCE_ARRAY')
+      }
     } else {
       value = cb(value)
     }
-
-    var useSourceArray = (sourceArrayLength !== destArrayLength)
 
     for (var i = 0; i < len; i++) {
       keyArr = parts[i].split(':')
@@ -48,6 +53,6 @@ function transform (str) {
         construct = temp
       }
     }
-    return merge(obj, construct, opts({ useSourceArray: useSourceArray }))
+    return merge(obj, construct, opts)
   }
 }

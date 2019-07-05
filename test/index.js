@@ -26,7 +26,7 @@ test('mutates nested values', function (t) {
 test('will not mutate object if path not found', function (t) {
   t.plan(1)
 
-  var transform = dotpather('one.two.four')
+  var transform = dotpather('one.two.four', { strict: false })
   var value = transform({ one: { two: { three: 3 } } }, function (num) {
     return num + 1
   })
@@ -59,6 +59,21 @@ test('works with filter', function (t) {
   })
 
   t.deepEqual(value.one.two, [ { name: 'good', value: 'test' } ])
+})
+
+test('works with nested filter', function (t) {
+  t.plan(1)
+
+  var transform = dotpather('one.1.two')
+  var data = { one: [ 0, { two: [ { name: 'bad', value: 'test' }, { name: 'good', value: 'test' } ] }, 3 ] }
+
+  var value = transform(data, function (values) {
+    return values.filter(function (value) {
+      return value.name !== 'bad'
+    })
+  })
+
+  t.deepEqual(value.one, [ 0, { two: [ { name: 'good', value: 'test' } ] }, 3 ])
 })
 
 test('use numeric object keys', function (t) {
