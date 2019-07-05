@@ -14,6 +14,8 @@ function transform (str) {
     var testKey
     var isKey
     var construct
+    var sourceArrayLength = 0
+    var destArrayLength = 0
     var keyArr
     var opts = mergeOptions || options
 
@@ -21,7 +23,15 @@ function transform (str) {
       return obj
     }
 
-    value = cb(value)
+    if (value instanceof Array) {
+      destArrayLength = value.length
+      value = cb(value)
+      sourceArrayLength = value.length
+    } else {
+      value = cb(value)
+    }
+
+    var useSourceArray = (sourceArrayLength !== destArrayLength)
 
     for (var i = 0; i < len; i++) {
       keyArr = parts[i].split(':')
@@ -38,6 +48,6 @@ function transform (str) {
         construct = temp
       }
     }
-    return merge(obj, construct, opts)
+    return merge(obj, construct, opts({ useSourceArray: useSourceArray }))
   }
 }

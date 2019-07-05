@@ -72,3 +72,28 @@ test('use numeric object keys', function (t) {
 
   t.equal(value.one['1']['2'], 4)
 })
+
+test('deletions', function (t) {
+  t.plan(1)
+
+  var transform = dotpather('one')
+  var data = { one: { two: 3, three: 4 } }
+  var value = transform(data, function (obj) {
+    delete obj.two
+    return obj
+  })
+
+  t.deepEqual(value.one, { three: 4 })
+})
+
+test('array middles', function (t) {
+  t.plan(1)
+
+  var transform = dotpather('one.1')
+  var data = { one: [ 1, 2, 3 ] }
+  var value = transform(data, function (number) {
+    return number + 1
+  })
+
+  t.deepEqual(value.one, [ 1, 3, 3 ])
+})
