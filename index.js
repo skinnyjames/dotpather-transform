@@ -1,7 +1,8 @@
 
 module.exports = dotpather
 
-function dotpather (str, opts = { strict: false }) {
+function dotpather (str, options) {
+  var opts = options || { strict: false }
   var parts = str.split('.')
   return function transform (data, cb) {
     return set(parts, data, cb)
