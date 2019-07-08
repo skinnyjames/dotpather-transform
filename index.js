@@ -18,11 +18,10 @@ function dotpather (str, options) {
       }
       if (parts.length === 0) {
         data[part] = cb(data[part])
-        return data
       } else {
         data[part] = set(parts, data[part], cb)
-        return data
       }
+      return data
     }
   }
 }
